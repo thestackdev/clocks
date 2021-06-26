@@ -1,0 +1,27 @@
+{
+  "name": "world-clock",
+  "version": "1.0.0",
+  "description": "world clock",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build"
+  },
+  "keywords": [
+    "time-zones",
+    "clock",
+    "times",
+    "current time"
+  ],
+  "author": "shanmukeshwar",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.0",
+    "moment-timezone": "^0.5.33",
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4"
+  }
+}
