@@ -1,22 +1,44 @@
-import Clocks from 'components/Clocks';
-import Form from '../components/Form';
-import Head from 'next/head'
+import Form from "../components/Form";
+import { useSelector } from "react-redux";
+import moment from "moment-timezone";
 
 const Home = () => {
-    return <div className='home__container'>
-        <Head>
-            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-            <link rel="manifest" href="/site.webmanifest" />
-            <meta name="description" content="worlds clocks online search by timezome , country area" />
-            <meta name="keywords" content="timezone world clocks" />
-            <meta name="robots" content="index, follow" />
-            <meta name="language" content="EN" />
-            <title>world clocks</title>
-        </Head>
-        <Form />
-        <Clocks />
+  const key = useSelector((state) => state.key);
+  return (
+    <div className="flex flex-col gap-2 w-3/4">
+      <Form />
+      <div>
+        {moment.tz.names().map((content, k) => {
+          if ((key && content.toLocaleLowerCase().includes(key)) || !key) {
+            const zone = content.split("/");
+            const time = moment(Date.now())
+              .tz(content)
+              .format("HH:mm A-D/M/Y")
+              .split("-");
+            return (
+              <div
+                key={k}
+                className="flex w-full justify-between py-4 border-b"
+              >
+                <div className="flex flex-col text-left">
+                  <span className="text-xl font-medium text-gray-700">
+                    {zone[0]}
+                  </span>
+                  <span className="text-gray-500">{zone[1]}</span>
+                </div>
+                <div className="flex flex-col text-right">
+                  <span className="text-lg font-medium text-gray-700">
+                    {time[0]}
+                  </span>
+                  <span className="text-gray-500">{time[1]}</span>
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
-}
-export default Home
+  );
+};
+
+export default Home;

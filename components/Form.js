@@ -1,11 +1,26 @@
-import { useDispatch } from 'react-redux'
-import { updateKey } from 'redux/times'
+import { useDispatch } from "react-redux";
+import { updateKey } from "redux/times";
 
 const Form = () => {
-    const dispatch = useDispatch();
-    return <div className='form__container'>
-        <img src='/search.svg' alt='search' />
-        <input className='form__input' placeholder='search timezones' onChange={(e) => dispatch(updateKey(e.target.value))}></input>
+  const dispatch = useDispatch();
+  return (
+    <div className="flex border rounded-lg p-2 gap-2 w-full">
+      <svg
+        className="fill-gray-400 stroke-2"
+        width="24"
+        height="24"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+      >
+        <path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z" />
+      </svg>
+      <input
+        className="focus:outline-none"
+        placeholder="search timezones"
+        onChange={(e) => dispatch(updateKey(e.target.value))}
+      ></input>
     </div>
-}
-export default Form
+  );
+};
+
+export default Form;
